@@ -1,0 +1,1 @@
+web:    java -Dswarm.http.port=$PORT -jar target/maven-server-1.0-SNAPSHOT.war

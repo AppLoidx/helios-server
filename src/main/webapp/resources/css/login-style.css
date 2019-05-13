@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Just+Another+Hand|Lobster');
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lobster', sans-serif;
+    /* width: 100%; */
+    /* height: 100%; */
+
+}
+h1 {
+    margin: 0 0;
+    padding: 0 0;
+}
+.logo > h1{
+    font-family: 'Anton', sans-serif;
+    font-size: 50px;
+    letter-spacing: 3px;
+    /* text-decoration: underline; */
+    color: #b62c2c;
+    /* text-shadow: 2px 0 0 rgb(110, 0, 0); */
+    margin-top : 0;
+    margin-left: 10px;
+
+    transform: translate(-50%, -50%);
+    text-align: center;
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    width: 800px;
+    padding: 40px;
+}
+.intro{
+    width: 100%;
+    height: 100%;
+    background: #850000 url(http://www.anime-expo.org/wp-content/uploads/2017/02/AX-Home-Page-Landing-Image.png) no-repeat fixed center;
+    background-size: cover;
+}
+h2 {
+    color: white;
+    font-size: 40px;
+}
+.auth-box{
+    border: 2px #090813da;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    padding: 40px;
+
+    background: #090813da;
+}
+.button{
+    margin-top: 20px;
+    color: white;
+    background: none;
+    border: 2px solid #007219;
+    border-radius: 10px;
+    width: 150px;
+    height: 25px;
+
+    transition: all 1s;
+}
+.button:hover {
+    background: #007219;
+    border: 2px solid #007219;
+    border-radius: 10px;
+}
+.auth-box input{
+    background: none;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #06cad8;
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+    outline: none;
+    color: white;
+
+    transition: all .7s;
+}
+
+.auth-box input:hover{
+    width: 300px;
+}
+.navigation{
+    padding-right: 50px;
+    padding-left: 50px;
+    height: 70%;
+}
+.navigation > h2{
+    color: rgb(173, 2, 2);
+}
+.navigation > h2{
+    text-align: center;
+}
+.festival-features{
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 5%;
+    width: 100%;
+    display: flex;
+}
+
+.festival-features ul > li {
+    text-decoration: none;
+    display: inline-block;
+    width: 22%;
+    justify-content: space-between;
+    height: 40%;
+    background: #130909dc;
+}
+.feature {
+
+    border: 3px solid rgba(80, 0, 0, 0.747);
+    transition: transform .5s;
+}
+.feature:hover{
+    transform: translateY(-20px);
+}
+
+.festival-features > ul{
+    width: 100%;
+    display: flex;
+    list-style: none;
+    text-align: center;
+    justify-content: space-between;
+}
+
+ul {
+    text-decoration: none;
+}
+
+.img-holder {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+}
+
+p{
+    padding: 0;
+    margin: 0;
+}
+
+.feature > p{
+    color: white;
+    background: #850000;
+}

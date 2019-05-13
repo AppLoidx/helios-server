@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Start Page</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="resources/css/index.css">
+</head>
+<body>
+
+    <div class="intro go_to" href=".auth-box">
+        <div class="logo">
+            <h1>helios</h1>
+        </div>
+    </div>
+    <div class="auth-wrapper">
+        <form class="auth-box" action="/maven-server-1.0-SNAPSHOT/login" method="post">
+            <h2>Login</h2>
+            <div>
+                <input name="username" type="text" autocomplete="off" placeholder="Username">
+                <input type="password" name="password" autocomplete="off" placeholder="Password"><br>
+                <button type="submit" class="button">Войти</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.go_to').click( function(){ // ловим клик по ссылке с классом go_to
+                var scroll_el = $(this).attr('href'); // возьмем содержимое атрибута href, должен быть селектором, т.е. например начинаться с # или .
+                if ($(scroll_el).length !== 0) { // проверим существование элемента чтобы избежать ошибки
+                    $('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500); // анимируем скроолинг к элементу scroll_el
+                }
+                return false; // выключаем стандартное действие
+            });
+        });
+    </script>
+</body>
+</html>
