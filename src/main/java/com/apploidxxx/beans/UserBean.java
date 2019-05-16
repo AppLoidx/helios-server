@@ -1,5 +1,7 @@
 package com.apploidxxx.beans;
 
+import com.apploidxxx.entity.User;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -11,7 +13,7 @@ import java.io.Serializable;
 @SessionScoped
 public class UserBean implements Serializable {
     private String username;
-    private String password;
+    private User user;
 
     public String getUsername() {
         return username;
@@ -21,11 +23,19 @@ public class UserBean implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public User getUser() {
+        return user;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser(User user) {
+        this.user = user;
+        this.username = user.getUsername();
+    }
+
+    public String logout(){
+        user = null;
+        username = null;
+
+        return "/index.html";
     }
 }

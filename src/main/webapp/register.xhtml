@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <h:outputStylesheet library="css" name="register.css"/>
+</h:head>
+<h:body>
+    <h:form styleClass="auth-box">
+        <h:message for="username"/>
+        <h:inputText id="username" value="#{regBean.username}" a:placeholder="Username" required="true" requiredMessage="Username обязательное поле!"/>
+        <h:message for="password"/>
+        <h:inputText id="password" value="#{regBean.password}" a:placeholder="Password" a:type="password" required="true" requiredMessage="Пароль обязательное поле!"/>
+        <h:message for="name"/>
+        <h:inputText id="name" value="#{regBean.firstName}" a:placeholder="Имя" required="true" requiredMessage="Имя пользователя обязательное поле!"/>
+        <h:message for="lastname"/>
+        <h:inputText id="lastname" value="#{regBean.lastName}" a:placeholder="Фамилия" required="true" requiredMessage="Фамилия обязательное поле!"/>
+        <h:commandLink styleClass="button" action="#{regBean.register()}" value="Зарегистрироваться"/>
+    </h:form>
+</h:body>
+
+</html>

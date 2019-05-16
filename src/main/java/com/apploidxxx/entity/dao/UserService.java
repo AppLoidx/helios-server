@@ -1,7 +1,6 @@
-package com.apploidxxx.ds;
+package com.apploidxxx.entity.dao;
 
 import com.apploidxxx.entity.User;
-import com.apploidxxx.entity.dao.UsersDAO;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class UserService {
     public UserService() {
     }
 
-    public User findUser(int id) {
+    public User findUser(Long id) {
         return usersDao.findById(id);
     }
 
@@ -32,6 +31,10 @@ public class UserService {
 
     public List<User> findAllUsers() {
         return usersDao.findAll();
+    }
+
+    public User findByName(String username){
+        return usersDao.findByName(username);
     }
 
 }

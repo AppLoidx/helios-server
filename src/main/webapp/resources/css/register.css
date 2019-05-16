@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', 'Arial', sans-serif;
+    background-color: bisque;
+    /* width: 100%; */
+    /* height: 100%; */
+
+}
+
+a{
+    text-decoration: none;
+}
+
+.auth-box{
+    border: 2px #090813;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    padding: 20px;
+
+    background: #090813;
+}
+
+.auth-box input{
+    background: none;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #06cad8;
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+    outline: none;
+    color: white;
+
+    transition: all .7s;
+}
+
+.auth-box input:hover{
+    width: 300px;
+}
+
+.button{
+    margin-top: 20px;
+    color: white;
+    background: none;
+    /*border: 2px solid #007219;*/
+    /*border-radius: 10px;*/
+    width: 200px;
+    height: 50px;
+    padding: 3px;
+    transition: all 1s;
+}
+.button:hover {
+    color: #007219;
+    /*background: #007219;*/
+    /*border: 2px solid #007219;*/
+    /*border-radius: 10px;*/
+}
+
+#javax_faces_developmentstage_messages{
+
+    background-color: #292929;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 100%;
+    transition: all .5s;
+}
+
+#javax_faces_developmentstage_messages > li{
+    list-style-type: none;
+}
+
+#javax_faces_developmentstage_messages > li > span{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}

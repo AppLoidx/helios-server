@@ -1,6 +1,7 @@
 package com.apploidxxx.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author Arthur Kupriyanov
@@ -13,20 +14,54 @@ public class User {
 
     }
 
-    public User(String username, String password){
+    public User(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     @Id
     @GeneratedValue
-    private long id;
+    Long id;
 
-    @Column(name = "username")
+    @ManyToMany(mappedBy = "superUsers", fetch = FetchType.EAGER)
+    private Set<Queue> queueSuper;
+
+
+    @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
+    private Set<Queue> queueMember;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private ContactDetails contactDetails;
+
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    public Set<Queue> getQueueSuper() {
+        return queueSuper;
+    }
+
+    public void setQueueSuper(Set<Queue> queueSuper) {
+        this.queueSuper = queueSuper;
+    }
+
+    public Set<Queue> getQueueMember() {
+        return queueMember;
+    }
+
+    public void setQueueMember(Set<Queue> queueMember) {
+        this.queueMember = queueMember;
+    }
 
     public String getUsername() {
         return username;
@@ -44,4 +79,59 @@ public class User {
         this.password = password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ContactDetails getContactDetails() {
+        return contactDetails;
+    }
+
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.contactDetails = contactDetails;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User){
+            return ((User) obj).getUsername().equals(this.username);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return username.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

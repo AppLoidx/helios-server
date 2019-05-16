@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Just+Another+Hand|Lobster');
 
 body{
-    background: #ffffff url("../67138867_p0.png") no-repeat fixed top;
+    /*background: #ffffff url("../67138867_p0.png") no-repeat fixed top;*/
     /*background-size: ;*/
 }
 .success-text{
@@ -12,7 +12,7 @@ body{
     left: 50%;
     width: 100%;
     padding: 40px;
-    background: #000000bb;
+    background: #000000;
 }
 .success-text > p{
     color: white;

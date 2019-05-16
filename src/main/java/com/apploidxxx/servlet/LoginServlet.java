@@ -1,9 +1,8 @@
-package com.apploidxxx;
+package com.apploidxxx.servlet;
 
 import com.apploidxxx.beans.UserBean;
-import com.apploidxxx.ds.UserService;
 import com.apploidxxx.entity.User;
-import com.apploidxxx.entity.dao.UsersDAO;
+import com.apploidxxx.entity.dao.UserService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -26,11 +25,16 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         if (username!=null && password!=null){
-//            UserService service = new UserService();
-//            service.saveUser(new User(username, password));
-            userBean.setPassword(password);
-            userBean.setUsername(username);
-            request.getRequestDispatcher("page.xhtml").forward(request, response);
+            UserService service = new UserService();
+            User user = service.findByName(username);
+            if (user!=null && user.getPassword().equals(password)) {
+                userBean.setUsername(username);
+                userBean.setUser(user);
+                request.getRequestDispatcher("app/index.xhtml").forward(request, response);
+            } else {
+                request.setAttribute("message", "Неверный логин или пароль");
+                request.getRequestDispatcher("info.jsp").forward(request, response);
+            }
         }
     }
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <h:outputStylesheet library="css" name="register.css"/>
+    <h:outputStylesheet library="css" name="header.css"/>
+</h:head>
+<h:body>
+    <!--HEADER-->
+
+    <h:panelGroup layout="block" class="menu-header">
+        <h:panelGroup layout="block" class="logo">
+            <h:form styleClass="nav-link">
+                <h:commandLink class="nav-logo-link  helios-font" action="#{headerBean.heliosAction()}">Helios</h:commandLink>
+            </h:form>
+        </h:panelGroup>
+        <h:panelGroup layout="block" class="nav-bar">
+            <h:form styleClass="nav-link">
+                <h:commandLink styleClass=" username" action="#{headerBean.userClick()}">#{headerBean.fullName()}</h:commandLink>
+            </h:form>
+            <h:form styleClass="nav-link">
+                <h:commandLink action="#{headerBean.exitAction()}">Выйти</h:commandLink>
+            </h:form>
+        </h:panelGroup>
+    </h:panelGroup>
+
+    <!--END HEADER-->
+
+    <f:view>
+        <h:outputLabel>#{queueJoinBean.getQueueMenu()}</h:outputLabel>
+    </f:view>
+    <h:form styleClass="auth-box">
+        <h:inputText value="#{queueJoinBean.queueName}" a:placeholder="Имя очереди" required="true" requiredMessage="Укажите имя очереди"/>
+        <h:commandLink styleClass="button" action="#{queueJoinBean.join()}" value="Войти"/>
+    </h:form>
+</h:body>
+
+</html>
