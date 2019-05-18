@@ -30,10 +30,11 @@ public class NewQueueBean implements Serializable {
     private final String redirectUrl = "/app/queue.xhtml";
 
     public String createQueue(){
-
+        if (validateQueueName(name)) return null;
         QueueService service = new QueueService();
         Queue queue = getQueue(service);
         if (queue!=null) return null;
+        if (!validateQueueName(name)) return null;
 
         queue = new Queue(name);
         defaultQueueCreation(queue);
@@ -42,11 +43,11 @@ public class NewQueueBean implements Serializable {
     }
 
     public String createQueueNAddUser(){
-
+        if (validateQueueName(name)) return null;
         QueueService service = new QueueService();
         Queue queue = getQueue(service);
         if (queue!=null) return null;
-
+        if (!validateQueueName(name)) return null;
         queue = new Queue(name);
         defaultQueueCreation(queue);
 
@@ -63,7 +64,7 @@ public class NewQueueBean implements Serializable {
         q.setPassword(password);
     }
     private Queue getQueue(QueueService service){
-        if (validateQueueName(name)) return null;
+
 
         Queue queue = service.findQueue(name);
 
@@ -85,12 +86,14 @@ public class NewQueueBean implements Serializable {
             showMessage("Имя очереди должно быть короче 18 символов");
             return false;
         }
-        if (!name.matches("[a-zA-Z0-9\\- ]+")){
+        if (!name.matches("[a-zA-Z0-9а-яА-Я\\- ]+")){
             showMessage( "Имя очереди может состоять только из латинницы, пробела, чисел и символа дефиса");
             return false;
         }
-        if (password.equals("") || password.matches("\\s*")){
-            password = null;
+        if (password!=null) {
+            if (password.equals("") || password.matches("\\s*")) {
+                password = null;
+            }
         }
         return true;
     }

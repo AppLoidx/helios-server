@@ -50,7 +50,7 @@
             <version>2.3.1</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
+            <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>

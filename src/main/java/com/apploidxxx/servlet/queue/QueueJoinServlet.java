@@ -52,14 +52,18 @@ public class QueueJoinServlet extends HttpServlet {
             if (password==null){
                 if (queuePasswordEnter.getPassword()!=null){
                     password = queuePasswordEnter.getPassword();
+                    queuePasswordEnter.setPassword(null);
                 }else {
                     queuePasswordEnter.setQueueName(queueName);
                     req.getRequestDispatcher("passwordEnter.xhtml").forward(req, resp);
+                    return;
                 }
             }
             if (!queue.getPassword().equals(password)){
                 req.setAttribute("message", "Неверный пароль для очереди");
-                req.getRequestDispatcher("info.jsp").forward(req, resp);
+                queuePasswordEnter.setPassword(null);
+                req.getRequestDispatcher("/info.jsp").forward(req, resp);
+
                 return;
             }
         }
@@ -68,7 +72,7 @@ public class QueueJoinServlet extends HttpServlet {
 
         service.updateQueue(queue);
         updateUser();
-
+        queuePasswordEnter.setPassword(null);
         resp.sendRedirect(req.getContextPath() + "/app/queue.xhtml");
     }
 
@@ -98,13 +102,18 @@ public class QueueJoinServlet extends HttpServlet {
             if (password==null){
                 if (queuePasswordEnter.getPassword()!=null){
                     password = queuePasswordEnter.getPassword();
+                    queuePasswordEnter.setPassword(null);
                 }else {
                     queuePasswordEnter.setQueueName(queueName);
+                    queuePasswordEnter.setPassword(null);
                     req.getRequestDispatcher("passwordEnter.xhtml").forward(req, resp);
+
+                    return;
                 }
             }
             if (!queue.getPassword().equals(password)){
                 req.setAttribute("message", "Неверный пароль для очереди");
+                queuePasswordEnter.setPassword(null);
                 req.getRequestDispatcher("/info.jsp").forward(req, resp);
                 return;
             }
@@ -113,6 +122,7 @@ public class QueueJoinServlet extends HttpServlet {
         queue.addUser(userBean.getUser());
         service.updateQueue(queue);
         updateUser();
+        queuePasswordEnter.setPassword(null);
         resp.sendRedirect(req.getContextPath() + "/app/queue.xhtml");
     }
 
