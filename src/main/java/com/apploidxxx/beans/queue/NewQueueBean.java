@@ -30,7 +30,7 @@ public class NewQueueBean implements Serializable {
     private final String redirectUrl = "/app/queue.xhtml";
 
     public String createQueue(){
-        if (validateQueueName(name)) return null;
+        if (!validateQueueName(name)) return null;
         QueueService service = new QueueService();
         Queue queue = getQueue(service);
         if (queue!=null) return null;
@@ -43,7 +43,7 @@ public class NewQueueBean implements Serializable {
     }
 
     public String createQueueNAddUser(){
-        if (validateQueueName(name)) return null;
+        if (!validateQueueName(name)) return null;
         QueueService service = new QueueService();
         Queue queue = getQueue(service);
         if (queue!=null) return null;
