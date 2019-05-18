@@ -3,7 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
     <h:outputStylesheet library="css" name="register.css"/>
     <h:outputStylesheet library="css" name="header.css"/>
@@ -32,9 +33,11 @@
 
     <h:form styleClass="auth-box">
         <h:message for="queue-name"/>
-        <h:inputText id="queue-name" value="#{newQueueBean.name}" a:placeholder="Имя очереди" required="true" requiredMessage="Укажите имя очереди"/>
-        <h:commandLink styleClass="button" action="#{newQueueBean.createQueue()}" value="Создать"/>
-
+        <h:inputText id="queue-name" value="${newQueueBean.name}" a:placeholder="Имя очереди" required="true" requiredMessage="Укажите имя очереди"/>
+        <h:inputText value="${newQueueBean.description}" a:placeholder="Описание очереди"/>
+        <h:inputText value="${newQueueBean.password}" a:placeholder="Пароль, если очередь приватная"/>
+        <h:commandLink styleClass="button" action="${newQueueBean.createQueue()}" value="Создать"/><br/>
+        <h:commandLink styleClass="button" action="${newQueueBean.createQueueNAddUser()}" value="Создать и добавить меня"/>
     </h:form>
 </h:body>
 

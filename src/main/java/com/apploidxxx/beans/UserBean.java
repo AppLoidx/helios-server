@@ -1,6 +1,7 @@
 package com.apploidxxx.beans;
 
 import com.apploidxxx.entity.User;
+import com.apploidxxx.entity.dao.UserService;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -15,6 +16,9 @@ public class UserBean implements Serializable {
     private String username;
     private User user;
 
+    public void updateUser(){
+        user = new UserService().findUser(user.getId());
+    }
     public String getUsername() {
         return username;
     }
@@ -36,6 +40,8 @@ public class UserBean implements Serializable {
         user = null;
         username = null;
 
-        return "/index.html";
+        return "/index.jsp";
     }
+
+    // TODO: add user update from ds
 }

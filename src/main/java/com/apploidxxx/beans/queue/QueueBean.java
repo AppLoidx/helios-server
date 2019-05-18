@@ -14,10 +14,10 @@ public class QueueBean{
         return "queue/new.xhtml";
     }
     public String selectQueue(){
-        return "queue/join.xhtml";
+        return "queue/join.jsp";
     }
     public String manageQueue(){
-        return null;
+        return "queue/manage.jsp";
     }
 
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Start Page</title>
+    <title>Helios Start Page</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="resources/css/index.css">
@@ -14,13 +14,14 @@
         </div>
     </div>
     <div class="auth-wrapper">
-        <form class="auth-box" action="auth" method="post">
+        <form class="auth-box" action="auth" method="post" autocomplete="off">
             <h2>Login</h2>
             <div>
                 <input name="username" type="text" autocomplete="off" placeholder="Username">
                 <input type="password" name="password" autocomplete="off" placeholder="Password"><br>
                 <button type="submit" class="button">Войти</button>
-                <a href="register.xhtml" class="register-href">Нету аккаунта?</a>
+                <br><br>
+                <a href="register.xhtml" class="register-href" style="color: gray">Нету аккаунта?</a>
             </div>
         </form>
     </div>

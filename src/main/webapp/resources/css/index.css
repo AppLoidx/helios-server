@@ -76,8 +76,6 @@ body{
 }
 
 .auth-box input{
-    color: transparent;
-    text-shadow: 0 0 0 black;
 
     background: none;
     margin: 20px auto;
@@ -92,10 +90,7 @@ body{
     transition: all .7s;
 }
 
-.auth-box input:hover{
-    width: 300px;
-}
 .auth-box input:focus{
-    width: 300px;
+    /*width: 300px;*/
     background-color: bisque;
 }

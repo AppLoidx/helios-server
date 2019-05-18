@@ -1,6 +1,7 @@
 package com.apploidxxx.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -48,6 +49,9 @@ public class User {
     private String lastName;
 
     public Set<Queue> getQueueSuper() {
+        if (queueSuper == null){
+            queueSuper = new HashSet<>();
+        }
         return queueSuper;
     }
 
@@ -56,6 +60,9 @@ public class User {
     }
 
     public Set<Queue> getQueueMember() {
+        if (queueMember ==null){
+            queueMember = new HashSet<>();
+        }
         return queueMember;
     }
 

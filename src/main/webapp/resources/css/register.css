@@ -43,8 +43,8 @@ a{
     transition: all .7s;
 }
 
-.auth-box input:hover{
-    width: 300px;
+.auth-box > *{
+    color: white;
 }
 
 .button{

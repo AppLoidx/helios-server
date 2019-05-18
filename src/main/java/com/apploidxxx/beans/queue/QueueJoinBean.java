@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Arthur Kupriyanov
@@ -25,35 +26,26 @@ public class QueueJoinBean {
 
     QueueService service = new QueueService();
 
-    public void join(){
+    public String join(){
 
         Queue queue = service.findQueue(queueName);
 
         if (queue==null){
             showMessage("Такой очереди не существует", "500");
-            return;
+            return null;
         }
 
-        Set<User> members = queue.getMembersList();
-        for (User u : members){
-            if (u.equals(userBean.getUser())){
+        List<User> members = queue.getMembersList();
+
+            if (members.contains(userBean.getUser())){
                 showMessage("Вы уже в очереди", "");
-                return;
+                return null;
             }
-        }
+
         queue.addUser(userBean.getUser());
         service.updateQueue(queue);
         showMessage("Вы успешно добавлены в очередь " + queue.getName(), "");
-    }
-    public String getQueueMenu(){
-        StringBuilder sb = new StringBuilder();
-        List<Queue> queueList = service.findAllQueues();
-        sb.append("Список доступных очередей: ");
-        for (Queue q: queueList){
-            sb.append(q.getName()).append(",");
-        }
-
-        return sb.toString();
+        return "/app/queue.xhtml";
     }
 
     public String getQueueName() {
@@ -66,6 +58,13 @@ public class QueueJoinBean {
 
     private void showMessage(String msg, String title){
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, title));
-
+    }
+    public String getRef(String queueName){
+        return "/v1/queueJoin?queue_name="+queueName;
+    }
+    public List<Queue> getQueuesList(){
+        QueueService q = new QueueService();
+        List<Queue> queues = q.findAllQueues();
+        return queues.stream().filter(qu-> !userBean.getUser().getQueueMember().contains(qu)).collect(Collectors.toList());
     }
 }

@@ -15,7 +15,7 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>554</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1089</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1169</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -92,7 +92,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>352</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1090</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1170</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -173,30 +173,30 @@
       <Owner>postgres</Owner>
       <StateNumber>983</StateNumber>
     </table>
-    <table id="27" parent="16" name="employee_meeting">
-      <ObjectId>33432</ObjectId>
+    <table id="27" parent="16" name="queue">
+      <ObjectId>33483</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1062</StateNumber>
+      <StateNumber>1160</StateNumber>
     </table>
-    <table id="28" parent="16" name="queue">
-      <ObjectId>33437</ObjectId>
+    <table id="28" parent="16" name="queue_members">
+      <ObjectId>33491</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1087</StateNumber>
+      <StateNumber>1157</StateNumber>
     </table>
-    <table id="29" parent="16" name="queue_members">
-      <ObjectId>33442</ObjectId>
+    <table id="29" parent="16" name="queue_queuesequence">
+      <ObjectId>33496</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1085</StateNumber>
+      <StateNumber>1158</StateNumber>
     </table>
     <table id="30" parent="16" name="queue_super_users">
-      <ObjectId>33447</ObjectId>
+      <ObjectId>33499</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1087</StateNumber>
+      <StateNumber>1160</StateNumber>
     </table>
     <table id="31" parent="16" name="users">
       <ObjectId>33282</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1086</StateNumber>
+      <StateNumber>1159</StateNumber>
     </table>
     <column id="32" parent="26" name="id">
       <Position>1</Position>
@@ -246,97 +246,86 @@
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="39" parent="27" name="employee_id">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1062</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="40" parent="27" name="meeting_id">
-      <Position>2</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1062</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <index id="41" parent="27" name="employee_meeting_pkey">
-      <ObjectId>33435</ObjectId>
-      <StateNumber>1062</StateNumber>
-      <ColNames>employee_id
-meeting_id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="42" parent="27" name="employee_meeting_pkey">
-      <ObjectId>33436</ObjectId>
-      <StateNumber>1062</StateNumber>
-      <ColNames>employee_id
-meeting_id</ColNames>
-      <UnderlyingIndexName>employee_meeting_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="43" parent="28" name="queue_name">
+    <column id="39" parent="27" name="queue_name">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1081</StateNumber>
+      <StateNumber>1152</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="44" parent="28" name="queue_pkey">
-      <ObjectId>33440</ObjectId>
-      <StateNumber>1081</StateNumber>
+    <column id="40" parent="27" name="creationdate">
+      <Position>2</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>1152</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="41" parent="27" name="description">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>1152</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="42" parent="27" name="password">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>1152</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="43" parent="27" name="queue_pkey">
+      <ObjectId>33489</ObjectId>
+      <StateNumber>1152</StateNumber>
       <ColNames>queue_name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="45" parent="28" name="queue_pkey">
-      <ObjectId>33441</ObjectId>
-      <StateNumber>1081</StateNumber>
+    <key id="44" parent="27" name="queue_pkey">
+      <ObjectId>33490</ObjectId>
+      <StateNumber>1152</StateNumber>
       <ColNames>queue_name</ColNames>
       <UnderlyingIndexName>queue_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="46" parent="29" name="queue_name">
+    <column id="45" parent="28" name="queue_name">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1082</StateNumber>
+      <StateNumber>1153</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="47" parent="29" name="users_id">
+    <column id="46" parent="28" name="users_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1082</StateNumber>
+      <StateNumber>1153</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="48" parent="29" name="queue_members_pkey">
-      <ObjectId>33445</ObjectId>
-      <StateNumber>1082</StateNumber>
+    <index id="47" parent="28" name="queue_members_pkey">
+      <ObjectId>33494</ObjectId>
+      <StateNumber>1153</StateNumber>
       <ColNames>queue_name
 users_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="49" parent="29" name="queue_members_pkey">
-      <ObjectId>33446</ObjectId>
-      <StateNumber>1082</StateNumber>
+    <key id="48" parent="28" name="queue_members_pkey">
+      <ObjectId>33495</ObjectId>
+      <StateNumber>1153</StateNumber>
       <ColNames>queue_name
 users_id</ColNames>
       <UnderlyingIndexName>queue_members_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="50" parent="29" name="fkt6gsf1iw7qu1y13d0spy9btba">
-      <ObjectId>33457</ObjectId>
-      <StateNumber>1085</StateNumber>
+    <foreign-key id="49" parent="28" name="fkt6gsf1iw7qu1y13d0spy9btba">
+      <ObjectId>33509</ObjectId>
+      <StateNumber>1157</StateNumber>
       <ColNames>queue_name</ColNames>
-      <RefTableId>33437</RefTableId>
+      <RefTableId>33483</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>queue</RefTableName>
       <RefKeyName>queue_pkey</RefKeyName>
       <RefColNames>queue_name</RefColNames>
     </foreign-key>
-    <foreign-key id="51" parent="29" name="fk9vb16fp1hsnkiu8rbax68b0ks">
-      <ObjectId>33452</ObjectId>
-      <StateNumber>1084</StateNumber>
+    <foreign-key id="50" parent="28" name="fk9vb16fp1hsnkiu8rbax68b0ks">
+      <ObjectId>33504</ObjectId>
+      <StateNumber>1156</StateNumber>
       <ColNames>users_id</ColNames>
       <RefTableId>33282</RefTableId>
       <RefColPositions>1</RefColPositions>
@@ -344,48 +333,72 @@ users_id</ColNames>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="52" parent="30" name="queue_name">
+    <column id="51" parent="29" name="queue_queue_name">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1083</StateNumber>
+      <StateNumber>1154</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="53" parent="30" name="super_users">
+    <column id="52" parent="29" name="queuesequence">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1083</StateNumber>
+      <StateNumber>1154</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="54" parent="30" name="queue_super_users_pkey">
-      <ObjectId>33450</ObjectId>
-      <StateNumber>1083</StateNumber>
-      <ColNames>queue_name
-super_users</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="55" parent="30" name="queue_super_users_pkey">
-      <ObjectId>33451</ObjectId>
-      <StateNumber>1083</StateNumber>
-      <ColNames>queue_name
-super_users</ColNames>
-      <UnderlyingIndexName>queue_super_users_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="56" parent="30" name="fkgsn9y55vjcg25m68olkypq9xc">
-      <ObjectId>33467</ObjectId>
-      <StateNumber>1087</StateNumber>
-      <ColNames>queue_name</ColNames>
-      <RefTableId>33437</RefTableId>
+    <foreign-key id="53" parent="29" name="fknk96tvsn9x15m5udbparltq2d">
+      <ObjectId>33514</ObjectId>
+      <StateNumber>1158</StateNumber>
+      <ColNames>queue_queue_name</ColNames>
+      <RefTableId>33483</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>queue</RefTableName>
       <RefKeyName>queue_pkey</RefKeyName>
       <RefColNames>queue_name</RefColNames>
     </foreign-key>
-    <foreign-key id="57" parent="30" name="fkmayllnss47mqgqym8jwb7fnua">
-      <ObjectId>33462</ObjectId>
-      <StateNumber>1086</StateNumber>
+    <column id="54" parent="30" name="queue_name">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1155</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="55" parent="30" name="super_users">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1155</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="56" parent="30" name="queue_super_users_pkey">
+      <ObjectId>33502</ObjectId>
+      <StateNumber>1155</StateNumber>
+      <ColNames>queue_name
+super_users</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="57" parent="30" name="queue_super_users_pkey">
+      <ObjectId>33503</ObjectId>
+      <StateNumber>1155</StateNumber>
+      <ColNames>queue_name
+super_users</ColNames>
+      <UnderlyingIndexName>queue_super_users_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="58" parent="30" name="fkgsn9y55vjcg25m68olkypq9xc">
+      <ObjectId>33524</ObjectId>
+      <StateNumber>1160</StateNumber>
+      <ColNames>queue_name</ColNames>
+      <RefTableId>33483</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>queue</RefTableName>
+      <RefKeyName>queue_pkey</RefKeyName>
+      <RefColNames>queue_name</RefColNames>
+    </foreign-key>
+    <foreign-key id="59" parent="30" name="fkmayllnss47mqgqym8jwb7fnua">
+      <ObjectId>33519</ObjectId>
+      <StateNumber>1159</StateNumber>
       <ColNames>super_users</ColNames>
       <RefTableId>33282</RefTableId>
       <RefColPositions>1</RefColPositions>
@@ -393,72 +406,72 @@ super_users</ColNames>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="58" parent="31" name="id">
+    <column id="60" parent="31" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>978</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="59" parent="31" name="firstname">
+    <column id="61" parent="31" name="firstname">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>978</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="60" parent="31" name="lastname">
+    <column id="62" parent="31" name="lastname">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>978</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="61" parent="31" name="password">
+    <column id="63" parent="31" name="password">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>978</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="62" parent="31" name="username">
+    <column id="64" parent="31" name="username">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>978</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="63" parent="31" name="contactdetails_id">
+    <column id="65" parent="31" name="contactdetails_id">
       <Position>6</Position>
       <DataType>bigint|0s</DataType>
       <StateNumber>978</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="64" parent="31" name="users_pkey">
+    <index id="66" parent="31" name="users_pkey">
       <ObjectId>33288</ObjectId>
       <StateNumber>978</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="65" parent="31" name="uk_r43af9ap4edm43mmtq01oddj6">
+    <index id="67" parent="31" name="uk_r43af9ap4edm43mmtq01oddj6">
       <ObjectId>33298</ObjectId>
       <StateNumber>981</StateNumber>
       <ColNames>username</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="66" parent="31" name="users_pkey">
+    <key id="68" parent="31" name="users_pkey">
       <ObjectId>33289</ObjectId>
       <StateNumber>978</StateNumber>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="67" parent="31" name="uk_r43af9ap4edm43mmtq01oddj6">
+    <key id="69" parent="31" name="uk_r43af9ap4edm43mmtq01oddj6">
       <ObjectId>33299</ObjectId>
       <StateNumber>981</StateNumber>
       <ColNames>username</ColNames>
       <UnderlyingIndexName>uk_r43af9ap4edm43mmtq01oddj6</UnderlyingIndexName>
     </key>
-    <foreign-key id="68" parent="31" name="fk1filvp2l0w4eg4yaxl57diw9y">
+    <foreign-key id="70" parent="31" name="fk1filvp2l0w4eg4yaxl57diw9y">
       <ObjectId>33305</ObjectId>
       <StateNumber>983</StateNumber>
       <ColNames>contactdetails_id</ColNames>
