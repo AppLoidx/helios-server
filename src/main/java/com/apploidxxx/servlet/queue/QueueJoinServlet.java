@@ -71,7 +71,7 @@ public class QueueJoinServlet extends HttpServlet {
         queue.addUser(userBean.getUser());
 
         service.updateQueue(queue);
-        updateUser();
+        userBean.updateUser();
         queuePasswordEnter.setPassword(null);
         resp.sendRedirect(req.getContextPath() + "/app/queue.xhtml");
     }
@@ -121,12 +121,9 @@ public class QueueJoinServlet extends HttpServlet {
 
         queue.addUser(userBean.getUser());
         service.updateQueue(queue);
-        updateUser();
+        userBean.updateUser();
         queuePasswordEnter.setPassword(null);
         resp.sendRedirect(req.getContextPath() + "/app/queue.xhtml");
     }
 
-    private void updateUser(){
-        userBean.setUser(new UserService().findUser(userBean.getUser().getId()));
-    }
 }

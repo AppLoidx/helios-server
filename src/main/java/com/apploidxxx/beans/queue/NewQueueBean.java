@@ -54,7 +54,7 @@ public class NewQueueBean implements Serializable {
         queue.addUser(userBean.getUser());
 
         service.saveQueue(queue);
-        updateUser();
+        userBean.updateUser();
         return redirectUrl;
     }
 
@@ -74,10 +74,6 @@ public class NewQueueBean implements Serializable {
         }
 
         return null;
-    }
-
-    private void updateUser(){
-        userBean.setUser(new UserService().findUser(userBean.getUser().getId()));
     }
 
     private boolean validateQueueName(String name){
