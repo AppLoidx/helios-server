@@ -7,18 +7,18 @@
 
         <!--Locale database-->
 
-        <!--<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>-->
-        <!--<property name="hibernate.connection.username">postgres</property>-->
-        <!--<property name="hibernate.connection.password">postgres</property>-->
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">postgres</property>
 
         <!--locale database properties end-->
 
         <!--Heroku database-->
         <!---->
-        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d1jips6p6bub7l</property>
-        <property name="hibernate.connection.username">pnvwignsdyoghh</property>
-        <property name="hibernate.connection.password">bcc7387736ec01120854fe1a702fb0a11b59211079652f94788f07f7535f7dc2</property>
-        <!---->
+        <!--<property name="hibernate.connection.url">jdbc:postgresql://ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d1jips6p6bub7l</property>-->
+        <!--<property name="hibernate.connection.username">pnvwignsdyoghh</property>-->
+        <!--<property name="hibernate.connection.password">bcc7387736ec01120854fe1a702fb0a11b59211079652f94788f07f7535f7dc2</property>-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
         <!--heroku database properties end-->
 
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>

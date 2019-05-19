@@ -15,7 +15,6 @@
     <jsp:useBean id="queueShowBean" class="com.apploidxxx.beans.queue.QueueShowBean"/>
     ${queueShowBean.init(param.get('queue_name'))}
     <title>Очередь ${queueShowBean.queue.name}"</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/queue/css/util.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/queue/css/main.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/menu.css'/>">
     <style>
