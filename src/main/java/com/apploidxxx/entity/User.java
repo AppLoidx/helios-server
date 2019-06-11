@@ -1,8 +1,11 @@
 package com.apploidxxx.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
 
 /**
  * @author Arthur Kupriyanov
@@ -26,12 +29,19 @@ public class User {
     @GeneratedValue
     Long id;
 
+
     @ManyToMany(mappedBy = "superUsers", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Queue> queueSuper;
 
 
     @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Queue> queueMember;
+
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    private Session session;
 
     @OneToOne(cascade = CascadeType.ALL)
     private ContactDetails contactDetails;
@@ -39,7 +49,9 @@ public class User {
     @Column(name = "username", unique = true, nullable = false)
     private String username;
 
+
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(name = "firstName", nullable = false)
@@ -116,6 +128,14 @@ public class User {
 
     public void setContactDetails(ContactDetails contactDetails) {
         this.contactDetails = contactDetails;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 
     @Override

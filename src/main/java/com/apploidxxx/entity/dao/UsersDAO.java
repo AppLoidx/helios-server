@@ -38,7 +38,7 @@ class UsersDAO {
     }
     List<User> findAll() {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()){
-            return session.createQuery("From User", User.class).list();
+            return session.createQuery("from User", User.class).list();
         }
     }
 }
