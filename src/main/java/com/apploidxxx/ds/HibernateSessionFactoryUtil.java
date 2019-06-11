@@ -1,8 +1,6 @@
 package com.apploidxxx.ds;
 
-import com.apploidxxx.entity.ContactDetails;
-import com.apploidxxx.entity.Queue;
-import com.apploidxxx.entity.User;
+import com.apploidxxx.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -19,6 +17,9 @@ public class HibernateSessionFactoryUtil {
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Queue.class);
                 configuration.addAnnotatedClass(ContactDetails.class);
+                configuration.addAnnotatedClass(Session.class);
+                configuration.addAnnotatedClass(Chat.class);
+                configuration.addAnnotatedClass(Message.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 
