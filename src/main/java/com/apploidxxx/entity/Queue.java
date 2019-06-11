@@ -18,7 +18,8 @@ public class Queue {
     public Queue(String name){
         this.name = name;
         this.creationDate = new Date();
-        this.queueSequence = new LinkedList<>();
+        this.queueSequence = new LinkedHashSet<>();
+        this.chat = new Chat();
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -45,9 +46,12 @@ public class Queue {
             inverseJoinColumns={@JoinColumn(name="super_users")})
     private Set<User> superUsers;
 
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    private Chat chat;
+
     @Column(nullable = false)
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Long> queueSequence;
+    private Set<Long> queueSequence;
 
     @Column
     private String description;
@@ -104,7 +108,7 @@ public class Queue {
 
     public void shuffle(){
         System.err.println("Shuffle queue! " + queueSequence + " " + new Date());
-        Collections.shuffle(queueSequence);
+        Collections.shuffle((List<?>) queueSequence);
         System.err.println("after: " + queueSequence);
         new QueueService().updateQueue(this);
     }
@@ -166,6 +170,14 @@ public class Queue {
         this.password = password;
     }
 
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void setChat(Chat chat) {
+        this.chat = chat;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -181,7 +193,7 @@ public class Queue {
 
     @Override
     public String toString() {
-        return "Queue{" +
+        return "QueueApi{" +
                 "name='" + name + '\'' +
                 ", members=" + members +
                 ", superUsers=" + superUsers +
