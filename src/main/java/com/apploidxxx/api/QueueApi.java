@@ -1,21 +1,18 @@
 package com.apploidxxx.api;
 
-import com.apploidxxx.beans.UserBean;
+import com.apploidxxx.entity.Queue;
 import com.apploidxxx.entity.Session;
 import com.apploidxxx.entity.User;
 import com.apploidxxx.entity.dao.QueueService;
 import com.apploidxxx.entity.dao.SessionService;
 import com.apploidxxx.entity.dao.UserService;
 
-import javax.inject.Inject;
-import javax.jws.WebParam;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Arthur Kupriyanov
@@ -26,33 +23,24 @@ public class QueueApi {
 
 
     @GET
-    public List<User> getUsers(@NotNull @QueryParam("queue_name") String queueName,
-                              @QueryParam("type") String type){
-        if (type == null) type = "members";
+    public Object getQueue(@NotNull @QueryParam("queueName") String queueName){
 
         QueueService qs = new QueueService();
-        com.apploidxxx.entity.Queue q = qs.findQueue(queueName);
-
-        if (q!=null){
-            switch (type.toLowerCase()){
-                case "members":
-                    return q.getMembersList();
-                case "super_users":
-                    return new ArrayList<>(q.getSuperUsers());
-                default:
-                    return null;
-            }
-
-        } else {
-            return null;
-        }
+        Queue q = qs.findQueue(queueName);
+        if (q == null) return Response.status(Response.Status.BAD_REQUEST).build();
+        else return q;
     }
 
     @PUT
-    public String joinQueue(@NotNull@QueryParam("queue_name") String queueName,
-                            @NotNull@QueryParam("session") String sessionId){
+    public Object joinQueue(@NotNull@QueryParam("queueName") String queueName,
+                            @QueryParam("session") String sessionId,
+                            @CookieParam("session") String cSession){
         if (sessionId == null){
-            return "{status: 401, message: 'Вы не авторизованы'}";
+            if (cSession==null) {
+                return Response.status(Response.Status.UNAUTHORIZED);
+            } else {
+                sessionId = cSession;
+            }
         }
 
         SessionService ss = new SessionService();
@@ -76,14 +64,15 @@ public class QueueApi {
             qs.updateQueue(q);
             new UserService().updateUser(user);
 
-            return "{status: 200}";
+            return Response.ok();
         }
 
     }
 
     @POST
-    public String createQueue(@NotNull @QueryParam("queue_name") String queueName,
-                              @QueryParam("session") String sessionId){
+    public Object createQueue(@NotNull @QueryParam("queueName") String queueName,
+                              @NotNull@QueryParam("session") String sessionId,
+                              @QueryParam("fullname") String fullname){
 
         if (sessionId == null){
             return "{status: 401, message: 'Вы не авторизованы'}";
@@ -98,11 +87,12 @@ public class QueueApi {
             user = userSession.getUser();
         }
         QueueService qs = new QueueService();
-        com.apploidxxx.entity.Queue q = new com.apploidxxx.entity.Queue(queueName);
+
+        com.apploidxxx.entity.Queue q = new com.apploidxxx.entity.Queue(queueName, fullname==null?queueName:fullname);
         q.addSuperUser(user);
         try {
             qs.saveQueue(q);
-            return "{status: 200}";
+            return Response.ok().build();
         }catch (Exception e){
             return "{status: 400, message: " + e.getMessage() +"}";
         }
@@ -110,7 +100,7 @@ public class QueueApi {
 
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
-    public String deleteQueue(@NotNull@QueryParam("queue_name") String queueName,
+    public String deleteQueue(@NotNull@QueryParam("queueName") String queueName,
                               @QueryParam("user_name") String userName,
                               @QueryParam("session") String sessionId){
 

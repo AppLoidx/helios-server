@@ -7,20 +7,24 @@ import com.apploidxxx.entity.dao.SessionService;
 import com.apploidxxx.entity.dao.UserService;
 
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * @author Arthur Kupriyanov
  */
 @Path("/auth")
 public class Auth {
-    @POST
-    public String authorize(@NotNull @QueryParam("username") String username,
-                            @NotNull @QueryParam("password") String password){
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public Response authorize(  @NotNull @QueryParam("username") String username,
+                                @NotNull @QueryParam("password") String password,
+                                @NotNull@QueryParam("redirectUri") String redirectURI){
             UserService service = new UserService();
             User user = service.findByName(username);
             if (user!=null && PasswordChecker.checkEquals(password, user.getPassword())) {
@@ -37,10 +41,15 @@ public class Auth {
                     new UserService().updateUser(user);
                     ss.saveSession(s);
                 }
-
-                return s.getSessionId();
+                try {
+                    return Response.temporaryRedirect(new URI(redirectURI==null?"http://localhost:8080":redirectURI)).cookie(new NewCookie("session", s.getSessionId())).build();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+                }
+                //return Response.ok().cookie(new NewCookie("session", s.getSessionId())).build();
             } else {
-                return "Exception!";
+                return Response.status(Response.Status.BAD_REQUEST).build();
             }
     }
 }
