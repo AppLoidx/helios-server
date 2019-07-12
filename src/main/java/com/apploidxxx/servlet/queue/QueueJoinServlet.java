@@ -4,7 +4,6 @@ import com.apploidxxx.beans.UserBean;
 import com.apploidxxx.beans.queue.QueuePasswordEnter;
 import com.apploidxxx.entity.Queue;
 import com.apploidxxx.entity.dao.QueueService;
-import com.apploidxxx.entity.dao.UserService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;

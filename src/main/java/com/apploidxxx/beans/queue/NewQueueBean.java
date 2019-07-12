@@ -3,7 +3,6 @@ package com.apploidxxx.beans.queue;
 import com.apploidxxx.beans.UserBean;
 import com.apploidxxx.entity.Queue;
 import com.apploidxxx.entity.dao.QueueService;
-import com.apploidxxx.entity.dao.UserService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;

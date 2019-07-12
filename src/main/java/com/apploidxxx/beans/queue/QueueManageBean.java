@@ -4,10 +4,8 @@ import com.apploidxxx.beans.UserBean;
 import com.apploidxxx.entity.Queue;
 import com.apploidxxx.entity.User;
 import com.apploidxxx.entity.dao.UserService;
-import sun.nio.cs.UnicodeEncoder;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
