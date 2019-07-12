@@ -1,9 +1,6 @@
 package com.apploidxxx.entity.dao;
 
 import com.apploidxxx.entity.Session;
-import com.apploidxxx.entity.User;
-
-import java.util.List;
 
 /**
  * @author Arthur Kupriyanov

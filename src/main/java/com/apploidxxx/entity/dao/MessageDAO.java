@@ -4,7 +4,6 @@ import com.apploidxxx.ds.HibernateSessionFactoryUtil;
 import com.apploidxxx.entity.Message;
 import org.hibernate.Session;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 
 /**

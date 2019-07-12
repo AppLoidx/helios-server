@@ -1,11 +1,9 @@
 package com.apploidxxx.entity.dao;
 
 import com.apploidxxx.ds.HibernateSessionFactoryUtil;
-import com.apploidxxx.entity.User;
 import org.hibernate.Session;
 
 import javax.persistence.NoResultException;
-import java.util.List;
 
 /**
  * @author Arthur Kupriyanov
