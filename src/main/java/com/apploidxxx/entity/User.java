@@ -24,6 +24,10 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+    public User(String username, String password, String firstName, String lastName, String email){
+        this(username, password, firstName, lastName);
+        this.contactDetails = new ContactDetails(this, email);
+    }
 
     @Id
     @GeneratedValue
@@ -76,6 +80,10 @@ public class User {
             queueMember = new HashSet<>();
         }
         return queueMember;
+    }
+
+    public void addVkId(long vkid){
+        this.contactDetails = new ContactDetails(this, this.contactDetails.getEmail(), vkid);
     }
 
     public void setQueueMember(Set<Queue> queueMember) {

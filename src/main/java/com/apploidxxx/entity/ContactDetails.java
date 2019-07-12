@@ -1,5 +1,6 @@
 package com.apploidxxx.entity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -8,10 +9,22 @@ import javax.persistence.*;
 @Entity
 public class ContactDetails {
 
+    public ContactDetails(){}
+    public ContactDetails(User user, String email, long vkontakteId){
+        this.user = user;
+        this.email = email;
+        this.vkontakteId = vkontakteId;
+    }
+    public ContactDetails(User user, String email){
+        this.user = user;
+        this.email = email;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
 
+    @JsonbTransient
     @OneToOne
     private User user;
 
@@ -19,7 +32,7 @@ public class ContactDetails {
     private String email;
 
     @Column
-    private int vkontakteId;
+    private long vkontakteId;
 
 
     public Long getId() {
@@ -46,7 +59,7 @@ public class ContactDetails {
         this.email = email;
     }
 
-    public int getVkontakteId() {
+    public long getVkontakteId() {
         return vkontakteId;
     }
 
