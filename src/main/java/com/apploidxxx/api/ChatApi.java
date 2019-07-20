@@ -1,14 +1,18 @@
 package com.apploidxxx.api;
 
-import com.apploidxxx.entity.*;
+import com.apploidxxx.api.util.UserSession;
+import com.apploidxxx.entity.Chat;
+import com.apploidxxx.entity.Message;
+import com.apploidxxx.entity.Queue;
+import com.apploidxxx.entity.User;
 import com.apploidxxx.entity.dao.ChatService;
 import com.apploidxxx.entity.dao.QueueService;
-import com.apploidxxx.entity.dao.SessionService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -21,7 +25,7 @@ public class ChatApi {
     @GET
     @Path("/{queueName}")
     public Set<Message> getMessages(@PathParam("queueName") String queueName,
-                                    @Valid@NotNull@QueryParam("last_msg_id") int lastMsgId){
+                                    @Valid@NotNull@QueryParam("lastMsgId") int lastMsgId){
         QueueService qs = new QueueService();
         Queue queue  = qs.findQueue(queueName);
         if (queue==null){
@@ -41,32 +45,23 @@ public class ChatApi {
 
     @PUT
     @Path("/{queueName}")
-    public String addMessage(@PathParam("queueName") String queueName,
-                             @NotNull @QueryParam("message") String message,
-                             @NotNull @QueryParam("session") String session){
-            if (session == null){
-                return "{status: 401, message: 'Вы не авторизованы'}";
-            }
+    public Object addMessage(@PathParam("queueName") String queueName,
+                             @Valid@NotNull @QueryParam("message") String message,
+                             @Valid@NotNull@QueryParam("session") String session){
 
-            SessionService ss = new SessionService();
-            Session userSession = ss.findSession(session);
-            User user;
-            if (userSession==null){
-                return "Ошибка при обработке session";
-            } else {
-                user = userSession.getUser();
-            }
+            User user = UserSession.getUser(session);
+            if (user == null) return Response.status(Response.Status.BAD_REQUEST).build();
 
             QueueService qs = new QueueService();
             Queue q = qs.findQueue(queueName);
             if (q==null){
-                return "{status: 400, message: 'queue not found'}";
+                return Response.status(Response.Status.NOT_FOUND).entity("Queue not found").build();
             } else {
                 Chat chat = q.getChat();
-                if (message.equals("")) return "{status: 400, message: 'bad parameter message'}";
+                if (message.equals("")) return Response.status(Response.Status.BAD_REQUEST).entity("invalid message");
                 chat.newMessage(user, message);
                 new ChatService().updateChat(chat);
-                return "{status: 200}";
+                return Response.ok().build();
             }
     }
 }
