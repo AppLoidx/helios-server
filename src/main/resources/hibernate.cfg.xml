@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!--Locale database-->
+
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">postgres</property>
+
+        <!--locale database properties end-->
+
+        <!--Heroku database-->
+        <!---->
+<!--        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d1jips6p6bub7l</property>-->
+<!--        <property name="hibernate.connection.username">pnvwignsdyoghh</property>-->
+<!--        <property name="hibernate.connection.password">bcc7387736ec01120854fe1a702fb0a11b59211079652f94788f07f7535f7dc2</property>-->
+        <!---->
+        <!--heroku database properties end-->
+
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+        <property name="show_sql">true</property>
+    </session-factory>
+</hibernate-configuration>
