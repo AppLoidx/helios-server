@@ -15,17 +15,20 @@ import java.util.*;
 public class Queue {
 
     public Queue(){}
-    public Queue(String name){
+    public Queue(String name, String fullname){
         this.name = name;
         this.creationDate = new Date();
         this.queueSequence = new LinkedHashSet<>();
         this.chat = new Chat();
+        this.fullname = fullname;
+    }
+    public Queue(String name){
+        this(name, name);
     }
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
-    private
-    Date creationDate;
+    private Date creationDate;
 
     @Column
     private String password;
@@ -33,6 +36,9 @@ public class Queue {
     @Id
     @Column(name = "queue_name", unique = true)
     private String name;
+
+    @Column(name = "fullname")
+    private String fullname;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="QUEUE_MEMBERS",
@@ -176,6 +182,14 @@ public class Queue {
 
     public void setChat(Chat chat) {
         this.chat = chat;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     @Override
