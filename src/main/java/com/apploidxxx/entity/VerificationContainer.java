@@ -11,8 +11,9 @@ import java.util.Set;
 public class VerificationContainer {
     public VerificationContainer(){}
 
+    @Id
     @OneToMany
-    @Column
+    @Column(unique = true)
     Set<User> user;
 
     public boolean verificate(){
